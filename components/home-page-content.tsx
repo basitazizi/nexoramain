@@ -28,7 +28,7 @@ const capabilityRows = [
   { icon: ShieldCheck, label: "Booking, ordering QR, e-commerce, and AI agents" }
 ];
 
-const websiteModules = ["Clear positioning", "Trust blocks", "Conversion CTA"];
+const websiteModules = ["Clear positioning", "Trust blocks"];
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -284,19 +284,19 @@ function MockupStage({
           <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         </div>
 
-        <div className="p-4 md:p-5">
-          <div className="rounded-[22px] bg-white px-4 py-4 text-[var(--foreground)] md:px-5 md:py-5">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-black/38">
-                  <Globe className="h-3.5 w-3.5" />
-                  Website preview
+        <div className="p-3 md:p-5">
+          <div className="rounded-[22px] bg-white px-3 py-3 text-[var(--foreground)] md:px-5 md:py-5">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-black/38">
+                <Globe className="h-3.5 w-3.5" />
+                Website preview
               </div>
               <div className="rounded-full bg-[var(--background-soft)] px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-black/42">
                 Home
               </div>
             </div>
 
-            <div className="mt-4 rounded-[20px] border border-[var(--line)] bg-[linear-gradient(180deg,#ffffff,#f7f7f7)] p-4">
+            <div className="mt-3 rounded-[20px] border border-[var(--line)] bg-[linear-gradient(180deg,#ffffff,#f7f7f7)] p-3 md:p-4">
               <div className="flex items-center justify-between gap-3 text-[11px] text-black/38">
                 <span>Aureon</span>
                 <div className="flex items-center gap-2">
@@ -306,40 +306,40 @@ function MockupStage({
                 </div>
               </div>
 
-              <p className="mt-5 max-w-[9ch] text-[clamp(1.8rem,3.4vw,3.1rem)] font-semibold leading-[0.92] tracking-[-0.07em]">
+              <p className="mt-4 max-w-[10ch] text-[clamp(1.55rem,3vw,3.1rem)] font-semibold leading-[0.92] tracking-[-0.07em] md:max-w-[9ch]">
                 Websites and systems built to sell, manage, and scale.
               </p>
-              <p className="mt-3 max-w-[24rem] text-sm leading-relaxed text-black/56">
+              <p className="mt-3 max-w-[24rem] text-[0.92rem] leading-relaxed text-black/56 md:text-sm">
                 Clear messaging, better structure, and direct paths into bookings,
                 orders, enquiries, and the internal systems behind them.
               </p>
 
               <div className="mt-4 flex gap-2">
-                <div className="rounded-full bg-[var(--accent)] px-3 py-2 text-xs font-medium text-white">
+                <div className="rounded-full bg-[var(--accent)] px-3 py-2 text-[11px] font-medium text-white md:text-xs">
                   Start a project
                 </div>
-                <div className="rounded-full border border-[var(--line)] px-3 py-2 text-xs text-black/66">
+                <div className="rounded-full border border-[var(--line)] px-3 py-2 text-[11px] text-black/66 md:text-xs">
                   See services
                 </div>
               </div>
 
-              <div className="mt-5 grid gap-2 sm:grid-cols-3">
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
                 {websiteModules.map((item) => (
                   <div
                     key={item}
-                    className="rounded-[16px] bg-[var(--background-soft)] px-3 py-3 text-xs text-black/58"
+                    className="rounded-[16px] bg-[var(--background-soft)] px-3 py-2.5 text-[11px] text-black/58 md:text-xs"
                   >
                     {item}
                   </div>
                 ))}
               </div>
 
-              <div className="mt-5 grid gap-3 md:grid-cols-[1.05fr_0.95fr]">
+              <div className="mt-4 grid gap-2.5 md:grid-cols-[1.05fr_0.95fr]">
                 <div className="rounded-[18px] bg-[var(--background-soft)] px-4 py-4">
                   <p className="text-[10px] uppercase tracking-[0.18em] text-black/38">
                     Core offer
                   </p>
-                  <div className="mt-4 space-y-3">
+                  <div className="mt-3 space-y-2.5">
                     <div className="h-2 rounded-full bg-black/8">
                       <div className="h-2 w-[68%] rounded-full bg-[var(--foreground)]" />
                     </div>
@@ -359,10 +359,10 @@ function MockupStage({
                     </p>
                     <MessageSquare className="h-4 w-4 text-white/54" />
                   </div>
-                  <p className="mt-4 text-lg font-semibold leading-snug tracking-[-0.04em]">
+                  <p className="mt-3 text-[1.1rem] font-semibold leading-snug tracking-[-0.04em] md:text-lg">
                     Better digital tools, clearer customer journeys, and stronger brand growth.
                   </p>
-                  <div className="mt-4 rounded-full bg-white/[0.08] px-3 py-2 text-xs text-white/70">
+                  <div className="mt-3 rounded-full bg-white/[0.08] px-3 py-2 text-[11px] text-white/70 md:text-xs">
                     Software, websites, operations, and marketing aligned in one direction.
                   </div>
                 </div>
