@@ -3,11 +3,7 @@
 import {
   ArrowUpRight,
   CheckCircle2,
-  Database,
-  Gauge,
   Globe,
-  PenTool,
-  ShieldCheck
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -21,10 +17,10 @@ const highlightPills = [
 ];
 
 const capabilityRows = [
-  { icon: PenTool, label: "Websites, brand direction, and UI design" },
-  { icon: Database, label: "Software systems, databases, and admin panels" },
-  { icon: Gauge, label: "Marketing, content, social media, and paid ads" },
-  { icon: ShieldCheck, label: "Booking, ordering QR, e-commerce, and AI agents" }
+  "Websites and design",
+  "Software and admin systems",
+  "Marketing and paid ads",
+  "Booking, e-commerce, and AI"
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -106,27 +102,11 @@ export default function HomePageContent() {
                   <h2 className="mt-4 text-balance text-[clamp(2.3rem,4.8vw,4.4rem)] font-semibold leading-[0.94] tracking-[-0.07em]">
                     What we build and how it helps your business run better.
                   </h2>
-                  <p className="mt-4 text-balance text-base leading-relaxed text-white/62">
-                    From customer-facing websites to internal systems, we create digital
-                    tools that help businesses manage operations, sell online, take
-                    bookings, handle orders, and scale their brand more clearly.
+
+                  <p className="mt-6 max-w-[28rem] text-balance text-base leading-relaxed text-white/66">
+                    We combine websites, software systems, booking and e-commerce flows,
+                    and growth support into one clearer digital setup for the business.
                   </p>
-
-                  <div className="mt-6 space-y-2.5">
-                    {capabilityRows.map((item) => {
-                      const Icon = item.icon;
-
-                      return (
-                        <div
-                          key={item.label}
-                          className="flex items-center gap-3 rounded-[18px] bg-white/[0.05] px-4 py-3 text-sm text-white/76"
-                        >
-                          <Icon className="h-4 w-4 text-white/58" />
-                          {item.label}
-                        </div>
-                      );
-                    })}
-                  </div>
                 </div>
 
                 <MockupStage prefersReducedMotion={prefersReducedMotion} />

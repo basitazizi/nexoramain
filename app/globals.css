@@ -116,6 +116,10 @@ button {
   display: none;
 }
 
+.soft-text-shadow {
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
 .home-scroll-stack {
   display: flex;
   max-height: calc(100svh - 10rem);
