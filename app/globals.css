@@ -103,6 +103,49 @@ button {
   animation: marquee-scroll 28s linear infinite;
 }
 
+.dot-grid {
+  background-image: radial-gradient(rgba(48, 46, 47, 0.12) 0.9px, transparent 0.9px);
+  background-size: 18px 18px;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.home-scroll-stack {
+  display: flex;
+  max-height: calc(100svh - 10rem);
+  min-height: 36rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+  scroll-padding-block-start: 0.25rem;
+  scroll-snap-type: y mandatory;
+}
+
+.home-snap-section {
+  min-height: calc(100svh - 10rem);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.snap-section-start {
+  scroll-snap-align: start;
+}
+
+.service-card-carousel {
+  scrollbar-width: none;
+}
+
+.service-card-carousel::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);
@@ -117,6 +160,14 @@ button {
   .page-shell::before {
     background: #fff;
   }
+
+  .home-scroll-stack {
+    max-height: calc(100svh - 8.8rem);
+  }
+
+  .home-snap-section {
+    min-height: calc(100svh - 8.8rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -126,5 +177,9 @@ button {
 
   .marquee-track {
     animation: none;
+  }
+
+  .home-scroll-stack {
+    scroll-snap-type: y proximity;
   }
 }

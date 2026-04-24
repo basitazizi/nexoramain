@@ -1,10 +1,5 @@
 export const navigation = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "About us", href: "/about-us" },
-  { label: "Team", href: "/team" },
-  { label: "Join", href: "/join" },
-  { label: "Contact", href: "/contact" }
+  { label: "Home", href: "/" }
 ];
 
 export const serviceCategories = [
