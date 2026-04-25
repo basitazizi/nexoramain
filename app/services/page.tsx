@@ -17,9 +17,10 @@ export default function ServicesPage() {
 
       <FinalCta
         title="Need one service or a blended build?"
-        description="We can combine dashboards, QR ordering, websites, and growth systems into one cleaner project plan based on what the business actually needs next."
+        description="We can combine website, systems, and growth work into one clear plan."
         primaryAction={{ label: "Contact us", href: "/contact" }}
         secondaryAction={{ label: "About us", href: "/about-us" }}
+        compact
       />
     </SiteShell>
   );

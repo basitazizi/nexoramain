@@ -116,21 +116,23 @@ export default function HomePageContent() {
 
           <section className="mx-auto max-w-[1040px] px-4 sm:px-0">
             <Reveal prefersReducedMotion={prefersReducedMotion}>
-              <div className="grid gap-5 border-t border-[var(--line)] pt-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-                <div className="max-w-[24rem]">
-                  <p className="text-xs uppercase tracking-[0.24em] text-black/38">Process</p>
-                  <h2 className="mt-4 text-balance text-[clamp(2.25rem,4.6vw,4.2rem)] font-semibold leading-[0.94] tracking-[-0.07em]">
-                    A focused process from strategy to launch.
-                  </h2>
-                </div>
+                <div className="grid gap-5 border-t border-[var(--line)] pt-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+                  <div className="max-w-[24rem]">
+                    <p className="text-xs uppercase tracking-[0.24em] text-black/38">
+                      What we build
+                    </p>
+                    <h2 className="mt-4 text-balance text-[clamp(2.25rem,4.6vw,4.2rem)] font-semibold leading-[0.94] tracking-[-0.07em]">
+                      Everything your business needs to run, sell, and grow.
+                    </h2>
+                  </div>
 
-                <p className="max-w-[31rem] text-balance text-sm leading-relaxed text-black/56 lg:justify-self-end">
-                  We define the direction, design the experience, build the system, and
-                  support the rollout so the website, product, and growth layer move as
-                  one.
-                </p>
-              </div>
-            </Reveal>
+                  <p className="max-w-[31rem] text-balance text-sm leading-relaxed text-black/56 lg:justify-self-end">
+                    From the website that brings customers in, to the systems that handle
+                    them once they arrive - we build the full digital layer behind your
+                    business. One team, one setup, built to work together.
+                  </p>
+                </div>
+              </Reveal>
 
             <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
               {processSteps.map((step, index) => (

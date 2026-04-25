@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { Check, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 
 import { isEnabledRoute } from "./site-data";
@@ -57,9 +58,16 @@ type ContactFormState = {
   email: string;
   company: string;
   service: string;
-  budget: string;
+  priority: string;
   message: string;
 };
+
+const consultationServices = [
+  "Websites",
+  "AI agents",
+  "Admin dashboards",
+  "Marketing & growth"
+] as const;
 
 function SectionMotion({
   children,
@@ -640,7 +648,7 @@ export function ContactFormSection({
     email: "",
     company: "",
     service: "",
-    budget: "",
+    priority: "",
     message: ""
   });
 
@@ -657,133 +665,156 @@ export function ContactFormSection({
   }
 
   return (
-    <SectionMotion className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-      <div className="rounded-[32px] border border-[var(--line)] bg-[var(--background-soft)] px-6 py-7 shadow-[0_12px_24px_var(--shadow-color)]">
-        <SectionHeading eyebrow={eyebrow} title={title} description={description} compact />
-        <div className="mt-8 space-y-4">
-          <div className="rounded-[24px] border border-[var(--line)] bg-white px-5 py-4">
-            <p className="text-sm text-black/44">Best for</p>
-            <p className="mt-2 text-base font-medium text-black/76">
-              New website builds, systems work, redesigns, and growth support.
+    <SectionMotion className="mt-8">
+      <div className="relative overflow-hidden rounded-[34px] bg-[linear-gradient(135deg,#171616,#252223)] px-6 py-8 text-white shadow-[0_18px_36px_var(--shadow-color)] sm:px-8 sm:py-9 lg:px-10">
+        <div className="pointer-events-none absolute -right-16 top-8 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(152,0,0,0.22),transparent_68%)] blur-3xl" />
+        <div className="pointer-events-none absolute -left-8 bottom-0 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_72%)] blur-2xl" />
+
+        <div className="relative mx-auto max-w-[920px]">
+          <div className="max-w-[44rem]">
+            <p className="text-xs uppercase tracking-[0.24em] text-white/40">{eyebrow}</p>
+            <h1 className="mt-4 text-balance text-[clamp(2.5rem,5.4vw,5rem)] font-semibold leading-[0.92] tracking-[-0.08em]">
+              {title}
+            </h1>
+            <p className="mt-5 max-w-[42rem] text-base leading-relaxed text-white/64 sm:text-lg">
+              {description}
             </p>
           </div>
-          <div className="rounded-[24px] border border-[var(--line)] bg-white px-5 py-4">
-            <p className="text-sm text-black/44">What to include</p>
-            <p className="mt-2 text-base font-medium text-black/76">
-              Your business, timeline, scope, and what you want improved.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-[var(--line)] bg-white px-5 py-4">
-            <p className="text-sm text-black/44">Response</p>
-            <p className="mt-2 text-base font-medium text-black/76">
-              We review messages and follow up with direction on the next step.
-            </p>
-          </div>
-        </div>
-      </div>
 
-      <div className="rounded-[32px] border border-[var(--line)] bg-white px-6 py-7 shadow-[0_16px_30px_var(--shadow-color)]">
-        <form className="grid gap-5" onSubmit={handleSubmit}>
-          <div className="grid gap-5 md:grid-cols-2">
-            <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/64">Name</span>
-              <input
-                type="text"
-                value={formState.name}
-                onChange={(event) => updateField("name", event.target.value)}
-                placeholder="Your name"
-                className="rounded-[18px] border border-[var(--line)] bg-[var(--background-soft)] px-4 py-3 text-black outline-none transition focus:border-[var(--accent)]"
-                required
-              />
-            </label>
-
-            <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/64">Email</span>
-              <input
-                type="email"
-                value={formState.email}
-                onChange={(event) => updateField("email", event.target.value)}
-                placeholder="you@example.com"
-                className="rounded-[18px] border border-[var(--line)] bg-[var(--background-soft)] px-4 py-3 text-black outline-none transition focus:border-[var(--accent)]"
-                required
-              />
-            </label>
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/54">
+            {[
+              "Websites built for leads, bookings, and sales.",
+              "AI agents trained around your workflow.",
+              "Dashboards and systems connected to operations.",
+              "Marketing support that keeps growth moving."
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-2">
+                <Check className="h-3.5 w-3.5 text-[var(--accent)]" />
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/64">Company</span>
-              <input
-                type="text"
-                value={formState.company}
-                onChange={(event) => updateField("company", event.target.value)}
-                placeholder="Company or brand"
-                className="rounded-[18px] border border-[var(--line)] bg-[var(--background-soft)] px-4 py-3 text-black outline-none transition focus:border-[var(--accent)]"
-              />
-            </label>
+          <form className="mt-10 grid gap-7" onSubmit={handleSubmit}>
+            <div className="grid gap-6 md:grid-cols-2">
+              <label className="grid gap-2">
+                <span className="text-sm font-medium text-white/68">Name</span>
+                <input
+                  type="text"
+                  value={formState.name}
+                  onChange={(event) => updateField("name", event.target.value)}
+                  placeholder="Your name"
+                  className="border-b border-white/14 bg-transparent pb-3 text-white outline-none transition placeholder:text-white/24 focus:border-[rgba(152,0,0,0.65)]"
+                  required
+                />
+              </label>
 
-            <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/64">Service</span>
-              <select
-                value={formState.service}
-                onChange={(event) => updateField("service", event.target.value)}
-                className="rounded-[18px] border border-[var(--line)] bg-[var(--background-soft)] px-4 py-3 text-black outline-none transition focus:border-[var(--accent)]"
-                required
-              >
-                <option value="">Select a service</option>
-                <option value="website">Website design and development</option>
-                <option value="systems">Admin panel or internal system</option>
-                <option value="ecommerce">E-commerce or ordering flow</option>
-                <option value="growth">Marketing and growth support</option>
-                <option value="other">Something else</option>
-              </select>
-            </label>
-          </div>
-
-          <label className="grid gap-2 md:max-w-[280px]">
-            <span className="text-sm font-medium text-black/64">Budget</span>
-            <select
-              value={formState.budget}
-              onChange={(event) => updateField("budget", event.target.value)}
-              className="rounded-[18px] border border-[var(--line)] bg-[var(--background-soft)] px-4 py-3 text-black outline-none transition focus:border-[var(--accent)]"
-            >
-              <option value="">Select budget range</option>
-              <option value="1-3k">$1k - $3k</option>
-              <option value="3-7k">$3k - $7k</option>
-              <option value="7-15k">$7k - $15k</option>
-              <option value="15k+">$15k+</option>
-            </select>
-          </label>
-
-          <label className="grid gap-2">
-            <span className="text-sm font-medium text-black/64">Project details</span>
-            <textarea
-              value={formState.message}
-              onChange={(event) => updateField("message", event.target.value)}
-              placeholder="Tell us what you need, what exists already, and what outcome you want."
-              className="min-h-[160px] rounded-[22px] border border-[var(--line)] bg-[var(--background-soft)] px-4 py-3 text-black outline-none transition focus:border-[var(--accent)]"
-              required
-            />
-          </label>
-
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-black/52">
-              This form is ready for questions now and can be wired to email or CRM next.
-            </p>
-            <button
-              type="submit"
-              className="rounded-full bg-[var(--accent)] px-7 py-3 text-base font-semibold text-white shadow-[0_12px_24px_var(--shadow-color)] transition hover:-translate-y-0.5 hover:bg-[#7f0000]"
-            >
-              Send message
-            </button>
-          </div>
-
-          {submitted ? (
-            <div className="rounded-[22px] border border-[var(--accent)] bg-[var(--accent-soft)] px-4 py-3 text-sm text-[var(--accent)]">
-              Thanks. Your message is captured in the form state and ready for backend wiring.
+              <label className="grid gap-2">
+                <span className="text-sm font-medium text-white/68">Email</span>
+                <input
+                  type="email"
+                  value={formState.email}
+                  onChange={(event) => updateField("email", event.target.value)}
+                  placeholder="you@example.com"
+                  className="border-b border-white/14 bg-transparent pb-3 text-white outline-none transition placeholder:text-white/24 focus:border-[rgba(152,0,0,0.65)]"
+                  required
+                />
+              </label>
             </div>
-          ) : null}
-        </form>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <label className="grid gap-2">
+                <span className="text-sm font-medium text-white/68">Business name</span>
+                <input
+                  type="text"
+                  value={formState.company}
+                  onChange={(event) => updateField("company", event.target.value)}
+                  placeholder="Business or brand"
+                  className="border-b border-white/14 bg-transparent pb-3 text-white outline-none transition placeholder:text-white/24 focus:border-[rgba(152,0,0,0.65)]"
+                  required
+                />
+              </label>
+
+              <label className="grid gap-2">
+                <span className="text-sm font-medium text-white/68">
+                  What matters most right now?
+                </span>
+                <input
+                  type="text"
+                  value={formState.priority}
+                  onChange={(event) => updateField("priority", event.target.value)}
+                  placeholder="More leads, better ops, launch, automation..."
+                  className="border-b border-white/14 bg-transparent pb-3 text-white outline-none transition placeholder:text-white/24 focus:border-[rgba(152,0,0,0.65)]"
+                  required
+                />
+              </label>
+            </div>
+
+            <fieldset className="grid gap-3">
+              <legend className="text-sm font-medium text-white/68">
+                Which service do you want help with?
+              </legend>
+              <div className="flex flex-wrap gap-3">
+                {consultationServices.map((service) => {
+                  const selected = formState.service === service;
+
+                  return (
+                    <button
+                      key={service}
+                      type="button"
+                      onClick={() => updateField("service", service)}
+                      className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition ${
+                        selected
+                          ? "bg-[var(--accent)] text-white"
+                          : "bg-white/[0.06] text-white/70 hover:bg-white/[0.1]"
+                      }`}
+                    >
+                      <span
+                        className={`flex h-5 w-5 items-center justify-center rounded-full ${
+                          selected ? "bg-white/16 text-white" : "bg-white/[0.08] text-white/40"
+                        }`}
+                      >
+                        <Check className="h-3 w-3" />
+                      </span>
+                      {service}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            <label className="grid gap-2">
+              <span className="text-sm font-medium text-white/68">Tell us what you need</span>
+              <textarea
+                value={formState.message}
+                onChange={(event) => updateField("message", event.target.value)}
+                placeholder="What are you trying to launch, improve, or automate?"
+                className="min-h-[150px] border-b border-white/14 bg-transparent pb-3 text-white outline-none transition placeholder:text-white/24 focus:border-[rgba(152,0,0,0.65)]"
+                required
+              />
+            </label>
+
+            <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-[34rem] text-sm leading-relaxed text-white/44">
+                Pick a service, send the details, and we will review the best next step for
+                the business.
+              </p>
+              <button
+                type="submit"
+                className="rounded-full bg-[var(--accent)] px-7 py-3 text-base font-semibold text-white shadow-[0_12px_24px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 hover:bg-[#7f0000]"
+              >
+                Request consultation
+              </button>
+            </div>
+
+            {submitted ? (
+              <div className="flex items-center gap-3 text-sm text-white/82">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+                Requested a consultation. We will be in touch soon.
+              </div>
+            ) : null}
+          </form>
+        </div>
       </div>
     </SectionMotion>
   );
@@ -793,34 +824,66 @@ export function FinalCta({
   title,
   description,
   primaryAction,
-  secondaryAction
+  secondaryAction,
+  compact = false
 }: {
   title: string;
   description: string;
   primaryAction: Action;
   secondaryAction?: Action;
+  compact?: boolean;
 }) {
   return (
-    <SectionMotion className="mt-8 rounded-[36px] border border-[var(--line)] bg-[var(--foreground)] px-6 py-8 text-white shadow-[0_18px_36px_var(--shadow-color)] sm:px-8 sm:py-10">
-      <div className="max-w-[760px]">
-        <p className="text-sm uppercase tracking-[0.24em] text-white/42">Next step</p>
-        <h2 className="mt-4 text-[clamp(2.3rem,4.4vw,4.7rem)] font-semibold leading-[0.95] tracking-[-0.07em]">
+    <SectionMotion
+      className={`mt-8 rounded-[36px] border border-[var(--line)] bg-[var(--foreground)] text-white shadow-[0_18px_36px_var(--shadow-color)] ${
+        compact ? "px-5 py-6 sm:px-7 sm:py-7" : "px-6 py-8 sm:px-8 sm:py-10"
+      }`}
+    >
+      <div className={compact ? "max-w-[620px]" : "max-w-[760px]"}>
+        <p
+          className={`uppercase tracking-[0.24em] text-white/42 ${
+            compact ? "text-xs" : "text-sm"
+          }`}
+        >
+          Next step
+        </p>
+        <h2
+          className={`mt-3 font-semibold leading-[0.95] tracking-[-0.07em] ${
+            compact
+              ? "max-w-none text-[clamp(1.85rem,7.6vw,3.6rem)] sm:max-w-[11ch] sm:text-[clamp(2rem,4vw,3.6rem)]"
+              : "text-[clamp(2.3rem,4.4vw,4.7rem)]"
+          }`}
+        >
           {title}
         </h2>
-        <p className="mt-5 max-w-[640px] text-lg leading-relaxed text-white/68">
+        <p
+          className={`leading-relaxed text-white/68 ${
+            compact ? "mt-4 max-w-none text-[0.98rem] sm:max-w-[640px] sm:text-base" : "mt-5 max-w-[640px] text-lg"
+          }`}
+        >
           {description}
         </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div
+          className={
+            compact
+              ? "mt-5 grid grid-cols-2 gap-2 sm:mt-6"
+              : "mt-8 flex flex-col gap-3 sm:flex-row"
+          }
+        >
           <ActionLink
             href={primaryAction.href}
-            className="rounded-full bg-[var(--accent)] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_12px_24px_var(--shadow-color)] transition hover:-translate-y-0.5 hover:bg-[#7f0000]"
+            className={`rounded-full bg-[var(--accent)] text-center font-semibold text-white shadow-[0_12px_24px_var(--shadow-color)] transition hover:-translate-y-0.5 hover:bg-[#7f0000] ${
+              compact ? "w-full px-4 py-2.5 text-sm" : "px-7 py-3.5 text-base"
+            }`}
           >
             {primaryAction.label}
           </ActionLink>
           {secondaryAction ? (
             <ActionLink
               href={secondaryAction.href}
-              className="rounded-full border border-white/14 bg-white/[0.04] px-7 py-3.5 text-center text-base font-medium text-white/82 transition hover:bg-white/[0.07]"
+              className={`rounded-full border border-white/14 bg-white/[0.04] text-center font-medium text-white/82 transition hover:bg-white/[0.07] ${
+                compact ? "w-full px-4 py-2.5 text-sm" : "px-7 py-3.5 text-base"
+              }`}
             >
               {secondaryAction.label}
             </ActionLink>

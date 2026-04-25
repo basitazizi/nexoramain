@@ -5,7 +5,7 @@ export const navigation = [
   { label: "Contact", href: "/contact" }
 ];
 
-export const enabledRoutes = ["/", "/services"] as const;
+export const enabledRoutes = ["/", "/services", "/contact"] as const;
 
 export function isEnabledRoute(href: string) {
   return enabledRoutes.includes(href as (typeof enabledRoutes)[number]);
@@ -82,24 +82,24 @@ export const homeShowcaseCards = [
 
 export const processSteps = [
   {
-    title: "Scope the offer",
+    title: "Websites",
     description:
-      "We define what needs to be built, who it is for, and what the site or system needs to achieve."
+      "Custom-built sites designed around one job - get you more leads, sales, or bookings. Showcase your business, sell online, take appointments, or run QR ordering and pickup menus for your restaurant. The site is shaped around the action that makes you money."
   },
   {
-    title: "Design the flow",
+    title: "AI agents",
     description:
-      "We shape the messaging, wireframes, visual direction, and interaction patterns before heavy build work starts."
+      "Custom AI agents that take orders, follow up with leads, schedule appointments, and send confirmations - trained on your specific workflow. They handle the repetitive work 24/7 so you can focus on growing."
   },
   {
-    title: "Ship the build",
+    title: "Admin dashboards",
     description:
-      "We develop the website, dashboard, booking flow, or automation stack and prepare it for launch."
+      "A custom dashboard connected to your site or database so you can manage clients, orders, revenue, and operations in one place. Built around how you work - not a generic tool you have to adapt to."
   },
   {
-    title: "Support growth",
+    title: "Marketing & growth",
     description:
-      "We refine pages, improve conversion points, and extend the system with content, campaigns, and new features."
+      "Social media, paid ads, content, and ongoing optimization to keep leads flowing in. The site brings them, the systems handle them, marketing keeps the pipeline full."
   }
 ];
 
