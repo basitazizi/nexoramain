@@ -1,6 +1,15 @@
 export const navigation = [
-  { label: "Home", href: "/" }
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About us", href: "/about-us" },
+  { label: "Contact", href: "/contact" }
 ];
+
+export const enabledRoutes = ["/", "/services"] as const;
+
+export function isEnabledRoute(href: string) {
+  return enabledRoutes.includes(href as (typeof enabledRoutes)[number]);
+}
 
 export const serviceCategories = [
   {

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
+import { isEnabledRoute } from "./site-data";
+
 type Action = {
   label: string;
   href: string;
@@ -95,21 +97,21 @@ function ActionButtons({
   return (
     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
       {primaryAction ? (
-        <Link
+        <ActionLink
           href={primaryAction.href}
           className="rounded-full bg-[var(--accent)] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_12px_24px_var(--shadow-color)] transition hover:-translate-y-0.5 hover:bg-[#7f0000]"
         >
           {primaryAction.label}
-        </Link>
+        </ActionLink>
       ) : null}
 
       {secondaryAction ? (
-        <Link
+        <ActionLink
           href={secondaryAction.href}
           className="rounded-full border border-[var(--line)] bg-white px-7 py-3.5 text-center text-base font-medium text-black/78 transition hover:bg-[var(--background-soft)]"
         >
           {secondaryAction.label}
-        </Link>
+        </ActionLink>
       ) : null}
     </div>
   );
@@ -158,18 +160,18 @@ export function HomeHero({
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link
+          <ActionLink
             href={primaryAction.href}
             className="rounded-full bg-[var(--accent)] px-10 py-4 text-lg font-semibold text-white shadow-[0_12px_24px_var(--shadow-color)] transition hover:-translate-y-0.5 hover:bg-[#7f0000]"
           >
             {primaryAction.label}
-          </Link>
-          <Link
+          </ActionLink>
+          <ActionLink
             href={secondaryAction.href}
             className="rounded-full border border-[var(--line)] bg-[var(--background-soft)] px-10 py-4 text-lg font-medium text-black/78 shadow-[0_10px_20px_var(--shadow-color)] transition hover:bg-[var(--background-muted)]"
           >
             {secondaryAction.label}
-          </Link>
+          </ActionLink>
         </div>
       </div>
     </motion.section>
@@ -610,12 +612,12 @@ export function ContactGrid({
           >
             <h3 className="text-[1.8rem] font-semibold tracking-[-0.05em]">{card.title}</h3>
             <p className="mt-4 text-base leading-relaxed text-black/60">{card.description}</p>
-            <Link
+            <ActionLink
               href={card.actionHref}
               className="mt-6 inline-flex rounded-full border border-[var(--line)] px-4 py-2.5 text-sm font-medium text-[var(--accent)] transition hover:bg-[var(--accent-soft)]"
             >
               {card.actionLabel}
-            </Link>
+            </ActionLink>
           </div>
         ))}
       </div>
@@ -809,23 +811,50 @@ export function FinalCta({
           {description}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link
+          <ActionLink
             href={primaryAction.href}
             className="rounded-full bg-[var(--accent)] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_12px_24px_var(--shadow-color)] transition hover:-translate-y-0.5 hover:bg-[#7f0000]"
           >
             {primaryAction.label}
-          </Link>
+          </ActionLink>
           {secondaryAction ? (
-            <Link
+            <ActionLink
               href={secondaryAction.href}
               className="rounded-full border border-white/14 bg-white/[0.04] px-7 py-3.5 text-center text-base font-medium text-white/82 transition hover:bg-white/[0.07]"
             >
               {secondaryAction.label}
-            </Link>
+            </ActionLink>
           ) : null}
         </div>
       </div>
     </SectionMotion>
+  );
+}
+
+function ActionLink({
+  children,
+  href,
+  className
+}: {
+  children: React.ReactNode;
+  href: string;
+  className: string;
+}) {
+  if (!isEnabledRoute(href)) {
+    return (
+      <span
+        aria-disabled="true"
+        className={`${className} cursor-not-allowed opacity-60`}
+      >
+        {children}
+      </span>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
   );
 }
 

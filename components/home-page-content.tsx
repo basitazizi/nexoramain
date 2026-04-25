@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   ArrowUpRight,
   CheckCircle2,
@@ -7,7 +8,7 @@ import {
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
-import { processSteps } from "./site-data";
+import { isEnabledRoute, processSteps } from "./site-data";
 import { SiteShell } from "./site-shell";
 
 const highlightPills = [
@@ -30,21 +31,25 @@ export default function HomePageContent() {
 
   return (
     <SiteShell>
-      <div className="relative -mt-8 overflow-x-clip pt-8">
+      <div className="relative -mt-8 overflow-x-clip pt-0">
         <div className="pointer-events-none absolute inset-0 dot-grid opacity-60" />
 
         <div className="relative space-y-10 pb-6 sm:space-y-12">
-          <section className="relative left-1/2 w-screen -translate-x-1/2 px-6 pt-8 lg:px-10 lg:pt-10">
+          <section className="relative left-1/2 w-screen -translate-x-1/2 px-6 pt-0 lg:px-10">
+            <Reveal prefersReducedMotion={prefersReducedMotion}>
+              <div className="mx-auto max-w-[1180px] pt-1.5">
+                <div className="flex justify-center">
+                  <div className="inline-flex items-center gap-3 rounded-[28px] border border-[var(--line)] bg-white/94 px-5 py-3 text-sm text-black/60 backdrop-blur-xl">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
+                    Software, systems, websites, and growth support for modern businesses.
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
             <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_top,rgba(152,0,0,0.08),transparent_62%)]" />
 
-            <div className="relative mx-auto flex max-w-[960px] flex-col items-center text-center">
-              <Reveal prefersReducedMotion={prefersReducedMotion}>
-                <div className="inline-flex items-center gap-3 rounded-full border border-[var(--line)] bg-white/88 px-4 py-2 text-sm text-black/60">
-                  <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
-                  Software, systems, websites, and growth support for modern businesses.
-                </div>
-              </Reveal>
-
+            <div className="relative mx-auto flex max-w-[960px] flex-col items-center pt-8 text-center sm:pt-10">
               <Reveal prefersReducedMotion={prefersReducedMotion} delay={0.08}>
                 <h1 className="mt-5 max-w-[12.5ch] text-balance text-[clamp(3rem,9vw,6.4rem)] font-semibold leading-[0.88] tracking-[-0.09em] text-[var(--foreground)]">
                   Aureon builds{" "}
@@ -65,13 +70,19 @@ export default function HomePageContent() {
 
               <Reveal prefersReducedMotion={prefersReducedMotion} delay={0.2}>
                 <div className="mt-8 flex w-full flex-row gap-3 sm:items-center sm:justify-center">
-                  <DisabledAction className="bg-[var(--accent)] text-white sm:px-7 sm:text-base">
+                  <ActionLink
+                    href="/contact"
+                    className="bg-[var(--accent)] text-white sm:px-7 sm:text-base"
+                  >
                     Start a project
                     <ArrowUpRight className="h-4 w-4" />
-                  </DisabledAction>
-                  <DisabledAction className="border border-[var(--line)] bg-white/90 text-black/55 sm:px-7 sm:text-base">
+                  </ActionLink>
+                  <ActionLink
+                    href="/services"
+                    className="border border-[var(--line)] bg-white/90 text-black/55 sm:px-7 sm:text-base"
+                  >
                     See services
-                  </DisabledAction>
+                  </ActionLink>
                 </div>
               </Reveal>
             </div>
@@ -183,13 +194,19 @@ export default function HomePageContent() {
                     Built for operators, brands, and businesses that need both execution and strategy.
                   </div>
                     <div className="mt-5 flex flex-row gap-3 sm:justify-end">
-                      <DisabledAction className="bg-[var(--accent)] text-white sm:px-7 sm:text-base">
+                      <ActionLink
+                        href="/contact"
+                        className="bg-[var(--accent)] text-white sm:px-7 sm:text-base"
+                      >
                         Go to contact
                         <ArrowUpRight className="h-4 w-4" />
-                      </DisabledAction>
-                      <DisabledAction className="border border-white/14 bg-white/[0.03] text-white/58 sm:px-7 sm:text-base">
+                      </ActionLink>
+                      <ActionLink
+                        href="/services"
+                        className="border border-white/14 bg-white/[0.03] text-white/58 sm:px-7 sm:text-base"
+                      >
                         See services
-                      </DisabledAction>
+                      </ActionLink>
                     </div>
                   </div>
                 </div>
@@ -202,20 +219,31 @@ export default function HomePageContent() {
   );
 }
 
-function DisabledAction({
+function ActionLink({
   children,
+  href,
   className
 }: {
   children: React.ReactNode;
+  href: string;
   className: string;
 }) {
   return (
-    <span
-      aria-disabled="true"
-      className={`inline-flex flex-1 cursor-not-allowed items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 py-3.5 text-[0.95rem] font-semibold opacity-80 sm:flex-none ${className}`}
-    >
-      {children}
-    </span>
+    isEnabledRoute(href) ? (
+      <Link
+        href={href}
+        className={`inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 py-3.5 text-[0.95rem] font-semibold transition hover:-translate-y-0.5 sm:flex-none ${className}`}
+      >
+        {children}
+      </Link>
+    ) : (
+      <span
+        aria-disabled="true"
+        className={`inline-flex flex-1 cursor-not-allowed items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 py-3.5 text-[0.95rem] font-semibold opacity-60 sm:flex-none ${className}`}
+      >
+        {children}
+      </span>
+    )
   );
 }
 
