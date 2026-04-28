@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Check, CheckCircle2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -988,8 +988,7 @@ export function ContactFormSection({
             </div>
 
             {submitState === "success" ? (
-              <div aria-live="polite" className="flex items-center gap-3 text-sm text-white/82">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+              <div aria-live="polite" className="sr-only">
                 {submitMessage}
               </div>
             ) : null}
@@ -1002,6 +1001,55 @@ export function ContactFormSection({
           </form>
         </div>
       </div>
+
+      <AnimatePresence>
+        {submitState === "success" ? (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close confirmation"
+              onClick={() => {
+                setSubmitState("idle");
+                setSubmitMessage("");
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-[rgba(15,13,13,0.18)] backdrop-blur-[2px]"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 18 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 10 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-0 z-50 flex items-center justify-center px-5"
+            >
+              <div className="w-full max-w-[24rem] rounded-[28px] border border-[var(--line)] bg-white px-6 py-6 text-center shadow-[0_26px_60px_rgba(27,26,26,0.18)]">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--accent)]">
+                  <CheckCircle2 className="h-6 w-6" />
+                </div>
+                <h3 className="mt-4 text-[1.55rem] font-semibold leading-none tracking-[-0.04em] text-[var(--foreground)]">
+                  Request received
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-black/58">
+                  We have got your request and we will contact you as soon as possible.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitState("idle");
+                    setSubmitMessage("");
+                  }}
+                  className="mt-5 inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-hover)]"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </>
+        ) : null}
+      </AnimatePresence>
     </SectionMotion>
   );
 }
