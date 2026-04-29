@@ -21,7 +21,7 @@ export default function ServicesPage() {
         <div className="relative mx-auto max-w-[1180px]">
           <div className="mx-auto max-w-[72rem] text-center">
             <h1 className="mx-auto max-w-[12ch] text-balance text-[clamp(3.3rem,8vw,7rem)] font-semibold leading-[0.88] tracking-[-0.09em] text-[var(--foreground)]">
-              Digital systems built to help your business sell, operate, and scale.
+              Custom-built for <span className="font-serif-display font-medium italic text-[var(--foreground-soft)]">how</span> your business runs.
             </h1>
 
             <p className="mx-auto mt-6 max-w-[56rem] text-[clamp(1rem,1.8vw,1.3rem)] leading-relaxed tracking-[-0.03em] text-black/58">

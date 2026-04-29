@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { BrandWordmark } from "./brand-wordmark";
 import { isEnabledRoute, navigation } from "./site-data";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -135,31 +135,18 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     );
   }
 
-  const brandMark = (
-    <Image
-      src="/aureon-logo-mark.png"
-      alt=""
-      aria-hidden="true"
-      width={40}
-      height={40}
-      className="h-8 w-8 object-contain sm:h-9 sm:w-9"
-      priority
-    />
-  );
-
   return (
     <div className="page-shell min-h-screen px-4 pb-10 pt-4 text-[var(--foreground)] sm:px-6 lg:px-10">
       <div className="mx-auto max-w-[1180px]">
         <header className="sticky top-4 z-50">
-          <div className="flex items-center justify-between gap-4 rounded-[28px] border border-[var(--line)] bg-white/94 px-5 py-3 backdrop-blur-xl md:px-4 md:py-4">
+          <div className="relative flex items-center justify-between gap-4 rounded-[28px] border border-[var(--line)] bg-white/94 px-5 py-3 backdrop-blur-xl md:px-4 md:py-4">
+            <NavAccentLine prefersReducedMotion={prefersReducedMotion} />
+
             <Link
               href="/"
-              className="flex items-center gap-2.5 text-[var(--foreground)]"
+              className="flex shrink-0 items-center text-[var(--foreground)]"
             >
-              {brandMark}
-              <span className="font-serif-display text-[1.7rem] leading-none tracking-[-0.06em] md:text-[1.8rem]">
-                Aureon
-              </span>
+              <BrandWordmark priority className="h-8 w-auto sm:h-9 md:h-10" />
             </Link>
 
             <nav className="ml-auto hidden items-center gap-2 md:flex">
@@ -243,9 +230,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
                     <div className="relative flex h-full flex-col pl-5 pr-2">
                       <div className="flex items-center justify-between">
-                        <div className="rounded-full border border-black/8 bg-white/70 px-2.5 py-1 text-[10px] uppercase tracking-[0.24em] text-black/38">
-                          Menu
-                        </div>
+                        <BrandWordmark className="h-5 w-auto" />
                         <button
                           type="button"
                           aria-label="Close menu"
@@ -271,19 +256,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
         <footer className="mt-10 border-t border-[var(--line)] px-4 py-5">
           <div className="mx-auto flex max-w-[620px] flex-col items-center text-center">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/aureon-logo-mark.png"
-                alt=""
-                aria-hidden="true"
-                width={28}
-                height={28}
-                className="h-5 w-5 object-contain"
-              />
-              <p className="font-serif-display text-[1.35rem] leading-none tracking-[-0.05em]">
-                Aureon
-              </p>
-            </div>
+            <BrandWordmark className="h-8 w-auto sm:h-9" />
 
             <p className="mt-1 text-[0.78rem] text-black/46">
               Software, websites, systems, and growth support.
@@ -308,6 +281,87 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           </div>
         </footer>
       </div>
+    </div>
+  );
+}
+
+function NavAccentLine({
+  prefersReducedMotion
+}: {
+  prefersReducedMotion: boolean;
+}) {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute left-1/2 top-1/2 hidden h-10 w-[clamp(9rem,22vw,15rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden xl:block"
+    >
+      <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-[linear-gradient(90deg,transparent,rgba(173,51,51,0.04),rgba(173,51,51,0.08),rgba(173,51,51,0.04),transparent)]" />
+
+      <motion.span
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                x: ["-20%", "18%", "-20%"],
+                opacity: [0.58, 0.92, 0.58],
+                scaleX: [0.94, 1.08, 0.94]
+              }
+        }
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : {
+                duration: 7.2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut"
+              }
+        }
+        className="absolute left-0 right-0 top-1/2 h-[2px] -translate-y-[7px] rounded-full bg-[linear-gradient(90deg,rgba(173,51,51,0),rgba(173,51,51,0.18),rgba(173,51,51,0.68),rgba(173,51,51,0.18),rgba(173,51,51,0))] blur-[1.2px]"
+      />
+
+      <motion.span
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                x: ["18%", "-20%", "18%"],
+                opacity: [0.38, 0.72, 0.38],
+                scaleX: [1, 0.88, 1]
+              }
+        }
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : {
+                duration: 8.6,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut"
+              }
+        }
+        className="absolute left-0 right-0 top-1/2 h-[2px] translate-y-[7px] rounded-full bg-[linear-gradient(90deg,rgba(173,51,51,0),rgba(173,51,51,0.1),rgba(173,51,51,0.46),rgba(173,51,51,0.1),rgba(173,51,51,0))] blur-[1.8px]"
+      />
+
+      <motion.span
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                x: ["-16%", "20%", "-16%"],
+                opacity: [0.18, 0.55, 0.18],
+                scale: [0.9, 1.12, 0.9]
+              }
+        }
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : {
+                duration: 5.6,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut"
+              }
+        }
+        className="absolute left-1/2 top-1/2 h-2 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(173,51,51,0.45)_0%,rgba(173,51,51,0.18)_45%,rgba(173,51,51,0)_72%)] blur-[4px]"
+      />
     </div>
   );
 }

@@ -8,7 +8,8 @@ import {
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
-import { isEnabledRoute, processSteps } from "./site-data";
+import { BrandWordmark } from "./brand-wordmark";
+import { isEnabledRoute } from "./site-data";
 import { SiteShell } from "./site-shell";
 
 const highlightPills = [
@@ -41,11 +42,11 @@ export default function HomePageContent() {
             <div className="relative mx-auto flex max-w-[960px] flex-col items-center pt-2 text-center sm:pt-4">
               <Reveal prefersReducedMotion={prefersReducedMotion} delay={0.08}>
                 <h1 className="max-w-[12.5ch] text-balance text-[clamp(3rem,9vw,6.4rem)] font-semibold leading-[0.88] tracking-[-0.09em] text-[var(--foreground)]">
-                  Aureon builds{" "}
+                  We build the{" "}
                   <span className="font-serif-display font-medium italic text-[var(--foreground-soft)]">
                     digital
                   </span>{" "}
-                  systems for modern businesses.
+                  layer behind your business.
                 </h1>
               </Reveal>
 
@@ -112,53 +113,6 @@ export default function HomePageContent() {
                 <MockupStage prefersReducedMotion={prefersReducedMotion} />
               </div>
             </Reveal>
-          </section>
-
-          <section className="mx-auto max-w-[1040px] px-4 sm:px-0">
-            <Reveal prefersReducedMotion={prefersReducedMotion}>
-                <div className="grid gap-5 border-t border-[var(--line)] pt-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-                  <div className="max-w-[24rem]">
-                    <p className="text-xs uppercase tracking-[0.24em] text-black/38">
-                      What we build
-                    </p>
-                    <h2 className="mt-4 text-balance text-[clamp(2.25rem,4.6vw,4.2rem)] font-semibold leading-[0.94] tracking-[-0.07em]">
-                      Everything your business needs to run, sell, and grow.
-                    </h2>
-                  </div>
-
-                  <p className="max-w-[31rem] text-balance text-sm leading-relaxed text-black/56 lg:justify-self-end">
-                    From the website that brings customers in, to the systems that handle
-                    them once they arrive - we build the full digital layer behind your
-                    business. One team, one setup, built to work together.
-                  </p>
-                </div>
-              </Reveal>
-
-            <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.title}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
-                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={prefersReducedMotion ? undefined : { once: true, amount: 0.3 }}
-                  transition={{ duration: 0.55, delay: index * 0.06, ease }}
-                  className="min-w-0 rounded-[22px] border border-[var(--line)] bg-white/95 px-4 py-4"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-xs uppercase tracking-[0.22em] text-black/38">
-                      0{index + 1}
-                    </p>
-                    <MoveDot prefersReducedMotion={prefersReducedMotion} />
-                  </div>
-                  <h3 className="mt-4 text-[1.45rem] font-semibold leading-[0.98] tracking-[-0.05em]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-black/56">
-                    {step.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
           </section>
 
           <section className="mx-auto max-w-[1040px] px-4 sm:px-0">
@@ -294,7 +248,7 @@ function MockupStage({
 
             <div className="mt-3 rounded-[20px] border border-[var(--line)] bg-[linear-gradient(180deg,#ffffff,#f7f7f7)] p-3 md:p-4">
               <div className="flex items-center justify-between gap-3 text-[11px] text-black/38">
-                <span>Aureon</span>
+                <BrandWordmark className="h-4 w-auto opacity-85" />
                 <div className="flex items-center gap-2">
                   <span>Services</span>
                   <span>About</span>
@@ -325,25 +279,5 @@ function MockupStage({
       </motion.div>
 
     </div>
-  );
-}
-
-function MoveDot({
-  prefersReducedMotion
-}: {
-  prefersReducedMotion: boolean;
-}) {
-  return (
-    <motion.div
-      animate={
-        prefersReducedMotion ? undefined : { x: [0, 10, 0], opacity: [0.45, 1, 0.45] }
-      }
-      transition={
-        prefersReducedMotion
-          ? undefined
-          : { duration: 3.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }
-      }
-      className="h-2 w-8 rounded-full bg-[linear-gradient(90deg,var(--accent),var(--accent-gradient-fade))]"
-    />
   );
 }

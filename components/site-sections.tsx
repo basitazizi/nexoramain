@@ -693,7 +693,7 @@ export function ContactFormSection({
   description
 }: {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   description: string;
 }) {
   const [emailReady, setEmailReady] = useState(false);
@@ -939,7 +939,7 @@ export function ContactFormSection({
                       aria-pressed={selected}
                       className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition ${
                         selected
-                          ? "border-[var(--accent)] bg-[var(--accent)] text-white shadow-[0_12px_24px_rgba(178,63,62,0.22)]"
+                          ? "border-[var(--accent)] bg-[var(--accent)] text-white shadow-[0_12px_24px_rgba(173,51,51,0.22)]"
                           : "border-white/10 bg-white/[0.06] text-white/70 hover:border-white/18 hover:bg-white/[0.1]"
                       }`}
                     >

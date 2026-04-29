@@ -8,16 +8,16 @@
   --foreground-soft: #312f30;
   --muted: rgba(49, 47, 48, 0.68);
   --line: rgba(48, 46, 47, 0.12);
-  --accent: #9c3736;
-  --accent-hover: #842f2e;
-  --accent-soft: rgba(156, 55, 54, 0.12);
-  --accent-soft-alt: rgba(156, 55, 54, 0.1);
-  --accent-glow: rgba(156, 55, 54, 0.08);
-  --accent-glow-strong: rgba(156, 55, 54, 0.22);
-  --accent-line-strong: rgba(156, 55, 54, 0.24);
-  --accent-focus: rgba(156, 55, 54, 0.65);
-  --accent-gradient-fade: rgba(156, 55, 54, 0.16);
-  --accent-selection: rgba(156, 55, 54, 0.18);
+  --accent: #ad3333;
+  --accent-hover: #ad3333;
+  --accent-soft: rgba(173, 51, 51, 0.12);
+  --accent-soft-alt: rgba(173, 51, 51, 0.1);
+  --accent-glow: rgba(173, 51, 51, 0.08);
+  --accent-glow-strong: rgba(173, 51, 51, 0.22);
+  --accent-line-strong: rgba(173, 51, 51, 0.24);
+  --accent-focus: rgba(173, 51, 51, 0.65);
+  --accent-gradient-fade: rgba(173, 51, 51, 0.16);
+  --accent-selection: rgba(173, 51, 51, 0.18);
   --shadow-color: rgba(108, 108, 108, 0.16);
 }
 
@@ -146,7 +146,7 @@ button {
 .form-field:focus {
   border-color: var(--accent-focus);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 4px rgba(178, 63, 62, 0.12);
+  box-shadow: 0 0 0 4px rgba(173, 51, 51, 0.12);
   outline: none;
 }
 

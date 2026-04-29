@@ -89,13 +89,8 @@ export function ServicesPageShowcase() {
             What we do
           </p>
           <h2 className="mt-4 text-balance text-[clamp(2.3rem,5vw,4.9rem)] font-semibold leading-[0.94] text-white">
-            Services built to bring in customers, simplify operations, and support growth.
+            What we <span className="font-serif-display font-medium italic text-white/82">actually</span> do.
           </h2>
-          <p className="mx-auto mt-4 max-w-[54rem] text-base leading-relaxed text-white/66 sm:text-lg">
-            From custom websites and eCommerce stores to AI agents, admin dashboards,
-            paid advertising, and content creation, we build the digital layer behind
-            modern businesses.
-          </p>
         </div>
 
         <div className="grid gap-4 md:hidden">
