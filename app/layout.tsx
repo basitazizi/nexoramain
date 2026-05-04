@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Bodoni_Moda, Manrope } from "next/font/google";
 
 import "./globals.css";
@@ -20,6 +21,11 @@ export const metadata: Metadata = {
     default: "Aureon",
     template: "%s | Aureon"
   },
+  icons: {
+    icon: "/aureon-logo-mark.png",
+    shortcut: "/aureon-logo-mark.png",
+    apple: "/aureon-logo-mark.png"
+  },
   description:
     "Aureon builds minimal websites, business systems, dashboards, and growth-ready digital experiences."
 };
@@ -33,6 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${sans.variable} ${serif.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
